@@ -1,0 +1,14 @@
+﻿using JEGRegistroEstudiante.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace JEGRegistroEstudiante.DAL
+{
+    public class ContextoRegistroEstudiantes : DbContext
+    {
+        public ContextoRegistroEstudiantes(DbContextOptions<ContextoRegistroEstudiantes> options) : base(options)
+        {
+
+        }
+        public DbSet<Estudiante> Estudiantes { get; set; }
+    }
+}
