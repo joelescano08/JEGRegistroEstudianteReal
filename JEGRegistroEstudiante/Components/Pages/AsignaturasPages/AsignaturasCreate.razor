@@ -1,0 +1,45 @@
+﻿@page "/asignaturas/create"
+@inject AsignaturasService asignaturasService
+@inject NavigationManager nav
+
+<EditForm Model="asignatura" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+
+    <div class="container">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h5>Crear Asignatura</h5>
+            </div>
+
+            <div class="card-body">
+                <InputText class="form-control mb-2" @bind-Value="asignatura.Codigo" placeholder="Código" />
+                <InputText class="form-control mb-2" @bind-Value="asignatura.Nombre" placeholder="Nombre" />
+                <InputText class="form-control mb-2" @bind-Value="asignatura.Aula" placeholder="Aula" />
+                <InputNumber class="form-control mb-2" @bind-Value="asignatura.Creditos" placeholder="Créditos" />
+
+                @if (!string.IsNullOrEmpty(Mensaje))
+                {
+                    <div class="alert alert-danger">@Mensaje</div>
+                }
+            </div>
+
+            <div class="card-footer text-center">
+                <button class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    public Asignaturas asignatura { get; set; } = new();
+    public string Mensaje { get; set; } = "";
+
+    private async Task Guardar()
+    {
+        var ok = await asignaturasService.Guardar(asignatura);
+        if (ok)
+            nav.NavigateTo("/asignaturas");
+        else
+            Mensaje = "No se permite duplicar asignaturas con el mismo nombre";
+    }
+}
