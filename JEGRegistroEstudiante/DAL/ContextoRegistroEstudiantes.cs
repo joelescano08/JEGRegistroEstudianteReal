@@ -11,5 +11,7 @@ namespace JEGRegistroEstudiante.DAL
 
         }
         public DbSet<Estudiantes> Estudiantes { get; set; }
+        public DbSet<Asignaturas> Asignaturas { get; set; }
+
     }
 }
