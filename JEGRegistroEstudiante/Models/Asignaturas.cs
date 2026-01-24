@@ -18,5 +18,6 @@ namespace JEGRegistroEstudiante.Models
 
         [Required(ErrorMessage = "Los créditos son obligatorios")]
         public int Creditos { get; set; }
+
     }
 }
