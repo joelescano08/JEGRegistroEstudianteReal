@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace JEGRegistroEstudiante.Models
 {
-    public class Estudiante
+    public class Estudiantes
     {
         [Key]
         public int EstudianteId { get; set; }

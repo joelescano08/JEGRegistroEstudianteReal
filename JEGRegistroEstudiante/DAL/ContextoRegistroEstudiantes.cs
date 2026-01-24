@@ -1,6 +1,7 @@
 ﻿using JEGRegistroEstudiante.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace JEGRegistroEstudiante.DAL
 {
     public class ContextoRegistroEstudiantes : DbContext
@@ -9,6 +10,6 @@ namespace JEGRegistroEstudiante.DAL
         {
 
         }
-        public DbSet<Estudiante> Estudiantes { get; set; }
+        public DbSet<Estudiantes> Estudiantes { get; set; }
     }
 }

@@ -8,12 +8,132 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="obj\Debug\net10.0\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net10.0\EmbeddedAttribute.cs" />
+    <Compile Include="obj\Debug\net10.0\JEGRegistroEstudiante.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net10.0\JEGRegistroEstudiante.GlobalUsings.g.cs" />
+    <Compile Include="obj\Debug\net10.0\ValidatableTypeAttribute.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net10.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net10.0\appsettings.json" />
+    <Content Include="bin\Debug\net10.0\JEGRegistroEstudiante.deps.json" />
+    <Content Include="bin\Debug\net10.0\JEGRegistroEstudiante.runtimeconfig.json" />
+    <Content Include="bin\Debug\net10.0\JEGRegistroEstudiante.staticwebassets.endpoints.json" />
+    <Content Include="bin\Debug\net10.0\JEGRegistroEstudiante.staticwebassets.runtime.json" />
+    <Content Include="obj\Debug\net10.0\ApiEndpoints.json" />
+    <Content Include="obj\Debug\net10.0\JEGRegistroEstudiante.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net10.0\JEGRegistroEstudiante.sourcelink.json" />
+    <Content Include="obj\Debug\net10.0\rbcswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net10.0\rjimswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net10.0\rjsmcshtml.dswa.cache.json" />
+    <Content Include="obj\Debug\net10.0\rjsmrazor.dswa.cache.json" />
+    <Content Include="obj\Debug\net10.0\rpswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net10.0\scopedcss\bundle\JEGRegistroEstudiante.styles.css" />
+    <Content Include="obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css" />
+    <Content Include="obj\Debug\net10.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css" />
+    <Content Include="obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css" />
+    <Content Include="obj\Debug\net10.0\scopedcss\projectbundle\JEGRegistroEstudiante.bundle.scp.css" />
+    <Content Include="obj\Debug\net10.0\staticwebassets.build.endpoints.json" />
+    <Content Include="obj\Debug\net10.0\staticwebassets.build.json" />
+    <Content Include="obj\Debug\net10.0\staticwebassets.development.json" />
+    <Content Include="obj\Debug\net10.0\staticwebassets.references.upToDateCheck.txt" />
+    <Content Include="obj\Debug\net10.0\staticwebassets.removed.txt" />
+    <Content Include="obj\Debug\net10.0\staticwebassets.upToDateCheck.txt" />
+    <Content Include="obj\JEGRegistroEstudiante.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Pages\Consultas\" />
+    <Folder Include="Components\Pages\Registros\" />
     <Folder Include="DAL\" />
+    <Folder Include="obj\Debug\net10.0\staticwebassets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net10.0\JEGRegistroEstudiante.dll" />
+    <None Include="bin\Debug\net10.0\JEGRegistroEstudiante.exe" />
+    <None Include="bin\Debug\net10.0\JEGRegistroEstudiante.pdb" />
+    <None Include="obj\Debug\net10.0\apphost.exe" />
+    <None Include="obj\Debug\net10.0\compressed\1rhbpnuat1-{0}-ausgxo2sd3-ausgxo2sd3.gz" />
+    <None Include="obj\Debug\net10.0\compressed\2bj37j65ia-{0}-tdbxkamptv-tdbxkamptv.gz" />
+    <None Include="obj\Debug\net10.0\compressed\2xi8iwztau-{0}-06098lyss8-06098lyss8.gz" />
+    <None Include="obj\Debug\net10.0\compressed\5oohatuxhv-{0}-khy4lop6wu-khy4lop6wu.gz" />
+    <None Include="obj\Debug\net10.0\compressed\6472f9dawe-{0}-pk9g2wxc8p-pk9g2wxc8p.gz" />
+    <None Include="obj\Debug\net10.0\compressed\6hi7csjdzs-{0}-y7v9cxd14o-y7v9cxd14o.gz" />
+    <None Include="obj\Debug\net10.0\compressed\6pjbf49x8s-{0}-jj8uyg4cgr-jj8uyg4cgr.gz" />
+    <None Include="obj\Debug\net10.0\compressed\7xc1slaskk-{0}-r4e9w2rdcm-r4e9w2rdcm.gz" />
+    <None Include="obj\Debug\net10.0\compressed\8nsxpu6ote-{0}-khv3u5hwcm-khv3u5hwcm.gz" />
+    <None Include="obj\Debug\net10.0\compressed\8txkm68hxf-{0}-iovd86k7lj-iovd86k7lj.gz" />
+    <None Include="obj\Debug\net10.0\compressed\957wjq4brd-{0}-d7shbmvgxk-d7shbmvgxk.gz" />
+    <None Include="obj\Debug\net10.0\compressed\9p7494vn4y-{0}-v0zj4ognzu-v0zj4ognzu.gz" />
+    <None Include="obj\Debug\net10.0\compressed\9ykig0cxw3-{0}-kbrnm935zg-kbrnm935zg.gz" />
+    <None Include="obj\Debug\net10.0\compressed\a1ndn93fjw-{0}-iz83ucvm53-iz83ucvm53.gz" />
+    <None Include="obj\Debug\net10.0\compressed\a37v1dmcam-{0}-k8d9w2qqmf-k8d9w2qqmf.gz" />
+    <None Include="obj\Debug\net10.0\compressed\aiguoj67bx-{0}-vr1egmr9el-vr1egmr9el.gz" />
+    <None Include="obj\Debug\net10.0\compressed\f5jgi4toel-{0}-b7pk76d08c-b7pk76d08c.gz" />
+    <None Include="obj\Debug\net10.0\compressed\gd5fr2j6up-{0}-6cfz1n2cew-6cfz1n2cew.gz" />
+    <None Include="obj\Debug\net10.0\compressed\h2h1umidgs-{0}-2i0r6wwb69-2i0r6wwb69.gz" />
+    <None Include="obj\Debug\net10.0\compressed\hcqratd9yi-{0}-notf2xhcfb-notf2xhcfb.gz" />
+    <None Include="obj\Debug\net10.0\compressed\hjvqmhvq4h-{0}-bqjiyaj88i-bqjiyaj88i.gz" />
+    <None Include="obj\Debug\net10.0\compressed\hm0tqftkj0-{0}-37tfw0ft22-37tfw0ft22.gz" />
+    <None Include="obj\Debug\net10.0\compressed\ih84w3regz-{0}-lcd1t2u6c8-lcd1t2u6c8.gz" />
+    <None Include="obj\Debug\net10.0\compressed\jp2sktvnbr-{0}-63fj8s7r0e-63fj8s7r0e.gz" />
+    <None Include="obj\Debug\net10.0\compressed\jwq144jdf9-{0}-rzd6atqjts-rzd6atqjts.gz" />
+    <None Include="obj\Debug\net10.0\compressed\k4b6kunvk8-{0}-hrwsygsryq-hrwsygsryq.gz" />
+    <None Include="obj\Debug\net10.0\compressed\kkq066v0ig-{0}-erw9l3u2r3-erw9l3u2r3.gz" />
+    <None Include="obj\Debug\net10.0\compressed\kyh2d6qi9v-{0}-cosvhxvwiu-cosvhxvwiu.gz" />
+    <None Include="obj\Debug\net10.0\compressed\kzv1yu4k6y-{0}-pj5nd1wqec-pj5nd1wqec.gz" />
+    <None Include="obj\Debug\net10.0\compressed\lmmlog5b1y-{0}-0j3bgjxly4-0j3bgjxly4.gz" />
+    <None Include="obj\Debug\net10.0\compressed\m6470w8ldk-{0}-nvvlpmu67g-nvvlpmu67g.gz" />
+    <None Include="obj\Debug\net10.0\compressed\n1nf27swyk-{0}-c2jlpeoesf-c2jlpeoesf.gz" />
+    <None Include="obj\Debug\net10.0\compressed\ortfjbtexi-{0}-ub07r2b239-ub07r2b239.gz" />
+    <None Include="obj\Debug\net10.0\compressed\ousfotkkye-{0}-6pdc2jztkx-6pdc2jztkx.gz" />
+    <None Include="obj\Debug\net10.0\compressed\ovxsx2ppy8-{0}-icn1wb9m2x-icn1wb9m2x.gz" />
+    <None Include="obj\Debug\net10.0\compressed\pddtat0bbn-{0}-493y06b0oq-493y06b0oq.gz" />
+    <None Include="obj\Debug\net10.0\compressed\pje91e7m1d-{0}-c2oey78nd0-c2oey78nd0.gz" />
+    <None Include="obj\Debug\net10.0\compressed\qds28r9psf-{0}-ft3s53vfgj-ft3s53vfgj.gz" />
+    <None Include="obj\Debug\net10.0\compressed\qz6kfj9vws-{0}-dxx9fxp4il-dxx9fxp4il.gz" />
+    <None Include="obj\Debug\net10.0\compressed\r8g9vm17ge-{0}-abdmv1u4y3-abdmv1u4y3.gz" />
+    <None Include="obj\Debug\net10.0\compressed\ra4iaxrpvt-{0}-jd9uben2k1-jd9uben2k1.gz" />
+    <None Include="obj\Debug\net10.0\compressed\rnfqnwt4s5-{0}-s35ty4nyc5-s35ty4nyc5.gz" />
+    <None Include="obj\Debug\net10.0\compressed\rvybj1sr3j-{0}-h1s4sie4z3-h1s4sie4z3.gz" />
+    <None Include="obj\Debug\net10.0\compressed\tcllml0hy5-{0}-fsbi9cje9m-fsbi9cje9m.gz" />
+    <None Include="obj\Debug\net10.0\compressed\v2jwqjoe9f-{0}-46ein0sx1k-46ein0sx1k.gz" />
+    <None Include="obj\Debug\net10.0\compressed\vdrca2ru0r-{0}-fvhpjtyr6v-fvhpjtyr6v.gz" />
+    <None Include="obj\Debug\net10.0\compressed\vvs7lr7npq-{0}-j5mq2jizvt-j5mq2jizvt.gz" />
+    <None Include="obj\Debug\net10.0\compressed\x597mrxf05-{0}-icn1wb9m2x-icn1wb9m2x.gz" />
+    <None Include="obj\Debug\net10.0\compressed\yv317yqqzy-{0}-aexeepp0ev-aexeepp0ev.gz" />
+    <None Include="obj\Debug\net10.0\compressed\zqz1yf0uf9-{0}-ee0r1s7dh0-ee0r1s7dh0.gz" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.assets.cache" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.dll" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net10.0\JEGRegistroEstudiante.pdb" />
+    <None Include="obj\Debug\net10.0\refint\JEGRegistroEstudiante.dll" />
+    <None Include="obj\Debug\net10.0\ref\JEGRegistroEstudiante.dll" />
+    <None Include="obj\Debug\net10.0\staticwebassets.build.json.cache" />
+    <None Include="obj\Debug\net10.0\swae.build.ex.cache" />
+    <None Include="obj\JEGRegistroEstudiante.csproj.nuget.g.props" />
+    <None Include="obj\JEGRegistroEstudiante.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFramework.SqlServer" Version="6.5.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
   </ItemGroup>
 
 </Project>
