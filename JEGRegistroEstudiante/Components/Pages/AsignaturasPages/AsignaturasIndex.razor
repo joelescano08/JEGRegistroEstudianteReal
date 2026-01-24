@@ -1,0 +1,67 @@
+﻿@page "/asignaturas"
+@inject AsignaturasService asignaturasService
+
+<PageTitle>Asignaturas</PageTitle>
+
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header space-between">
+            <h5 class="card-title">Registro de Asignaturas</h5>
+            <a href="/asignaturas/create" class="btn btn-primary">Crear</a>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Aula</th>
+                        <th>Créditos</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in ListaAsignaturas)
+                    {
+                        <tr>
+                            <td>@a.AsignaturaId</td>
+                            <td>@a.Codigo</td>
+                            <td>@a.Nombre</td>
+                            <td>@a.Aula</td>
+                            <td>@a.Creditos</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm"
+                                   href="/asignaturas/edit/@a.AsignaturaId">Editar</a>
+                                <button class="btn btn-danger btn-sm"
+                                        @onclick="() => Eliminar(a.AsignaturaId)">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-footer">
+            Total: @ListaAsignaturas.Count
+        </div>
+    </div>
+</div>
+
+@code {
+    public List<Asignaturas> ListaAsignaturas { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        ListaAsignaturas = await asignaturasService.Listar(a => a.AsignaturaId > 0);
+    }
+
+    private async Task Eliminar(int id)
+    {
+        await asignaturasService.Eliminar(id);
+        ListaAsignaturas = await asignaturasService.Listar(a => a.AsignaturaId > 0);
+    }
+}
