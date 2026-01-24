@@ -1,9 +1,7 @@
-﻿<h3>EstudiantesIndex</h3>
-@page "/Estudiante/Index"
+﻿@page "/estudiantes"
 
 @inject EstudiantesService estudiantesService
 @inject NavigationManager navigationManager
-@rendermode InteractiveServer
 
 <PageTitle>Registro de Estudiantes</PageTitle>
 
@@ -11,17 +9,15 @@
 	<div class="card shadow-lg">
 		<div class="card-header space-between">
 			<h5 class="card-title">Registro Estudiantes</h5>
-			<a href="/Estudiante/Create" class="btn btn-primary"> <span class="bi bi mt-3"></span> Crear</a>
+			<a href="/estudiantes/create" class="btn btn-primary"> <span class="bi bi mt-3"></span> Crear</a>
 		</div>
 	</div>
 
 	<div class="card-body">
-		@*labels*@
 		<div class="row">
 			
 		</div>
 
-		@*Inputs y Botones*@
 		<div class="row align-items-center">
 
 		</div>
@@ -42,5 +38,33 @@
 	public List<Estudiantes> ListaEstudiantes { get; set; } = new List<Estudiantes>(); 
 
 	public string Filtro { get; set; } = string.Empty;
+	public string ValorFiltro { get; set; } = string.Empty;
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		ListaEstudiantes = await estudiantesService.Listar(estudiante => estudiante.EstudianteId > 0);
+
+	}
+
+	private async Task Buscar()
+	{
+		if (ValorFiltro.Trim() != "")
+		{
+			if(Filtro == "EstudianteID")
+			{
+				ListaEstudiantes = await estudiantesService.Listar(e=>e.Nombres.ToLower().Contains(ValorFiltro.ToLower()));
+
+			}else if (Filtro == "Email")
+			{
+				ListaEstudiantes = await estudiantesService.Listar(e => e.Email.ToLower().Contains(ValorFiltro.ToLower()));
+			}
+		}
+		else
+		{
+			ListaEstudiantes = await estudiantesService.Listar(e => e.EstudianteId > 0);
+
+		}
+	}
 
 }

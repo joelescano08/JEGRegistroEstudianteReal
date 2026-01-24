@@ -1,5 +1,110 @@
-﻿<h3>EstudiantesCreate</h3>
+﻿@page "/estudiantes/create"
+@inject EstudiantesService estudiantesService
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
+
+@*HTML*@
+<PageTitle>Crear Estudiante</PageTitle>
+<EditForm Model="estudiante" OnValidSubmit="Guardar">
+	<DataAnnotationsValidator />
+
+	<div class="container">
+		<div class=" card shadow-lg">
+
+			<div class="card-header text-center">
+				<h5 class="card-title">Crear Estudiante</h5>
+			</div>
+			<div class="caard-body">
+				@*EstudianteId*@
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>EstudianteId</strong>
+					</label>
+					<InputNumber class="form-control" @bind-Value="estudiante.EstudianteId" readonly></InputNumber>
+				</div>
+
+				@*Nombres*@
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Nombres</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="estudiante.Nombres" />
+					<ValidationMessage For="() => estudiante.Nombres" />
+				</div>
+
+				@*Email*@
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Email</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="estudiante.Email" />
+					<ValidationMessage For="() => estudiante.Email" />
+
+				</div>
+
+				@*Edad*@
+				<!-- Edad -->
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Edad</strong>
+					</label>
+					<InputNumber class="form-control"
+								 @bind-Value="estudiante.edad" />
+					<ValidationMessage For="() => estudiante.edad" />
+				</div>
+
+				@if (!string.IsNullOrEmpty(MensajeError))
+				{
+					<div class="alert alert-danger">
+						@MensajeError
+					</div>
+				}
+
+			</div>
+
+			@*footer*@
+			<div class="card-footer text-center mt-2">
+				<a href="/estudiantes" class="btn btn alert-secondary">
+					<span class="bi bi-arrow-left"></span> Volver
+				</a>
+
+				<button type="submit" class="btn btn-primary bi bi-floppy">Guardar</button>
+			</div>
+		</div>
+	</div>
+</EditForm>
+
+
+
 
 @code {
 
+	public Estudiantes estudiante { get; set; } = new Estudiantes();
+
+	public string MensajeError { get; set; } = string.Empty;
+
+
+	protected override async Task OnInitializedAsync()
+	{
+
+	}
+	private async Task Guardar()
+	{
+		var creado = await estudiantesService.Guardar(estudiante);
+
+		if (creado)
+		{
+			navigationManager.NavigateTo("/estudiantes");
+		}
+		else
+		{
+			MensajeError = "No se pudo crear el estudiante correctamente";
+			return;
+		}
+	}
+
+
 }
+
