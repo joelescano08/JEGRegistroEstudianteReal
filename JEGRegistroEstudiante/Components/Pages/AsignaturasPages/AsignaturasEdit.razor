@@ -1,56 +1,65 @@
-﻿@page "/estudiantes/edit/{EstudianteId:int}"
-@inject EstudiantesService estudiantesService
+﻿@page "/asignaturas/edit/{AsignaturaId:int}"
+@inject AsignaturasService asignaturasService
 @inject NavigationManager navigation
 @rendermode InteractiveServer
 
-<PageTitle>Editar Estudiante</PageTitle>
+<PageTitle>Editar Asignatura</PageTitle>
 
-<EditForm Model="estudiante" OnValidSubmit="Guardar">
+<EditForm Model="asignatura" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
 
     <div class="container">
         <div class="card shadow-lg">
 
             <div class="card-header text-center">
-                <h5 class="card-title">Editar Estudiante</h5>
+                <h5 class="card-title">Editar Asignatura</h5>
             </div>
 
             <div class="card-body">
 
                 <div class="mb-3">
                     <label class="form-label">
-                        <strong>EstudianteId</strong>
+                        <strong>AsignaturaId</strong>
                     </label>
                     <InputNumber class="form-control"
-                                 @bind-Value="estudiante.EstudianteId"
+                                 @bind-Value="asignatura.AsignaturaId"
                                  readonly />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">
-                        <strong>Nombres</strong>
+                        <strong>Código</strong>
                     </label>
                     <InputText class="form-control"
-                               @bind-Value="estudiante.Nombres" />
-                    <ValidationMessage For="() => estudiante.Nombres" />
+                               @bind-Value="asignatura.Codigo" />
+                    <ValidationMessage For="() => asignatura.Codigo" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">
-                        <strong>Email</strong>
+                        <strong>Nombre</strong>
                     </label>
                     <InputText class="form-control"
-                               @bind-Value="estudiante.Email" />
-                    <ValidationMessage For="() => estudiante.Email" />
+                               @bind-Value="asignatura.Nombre" />
+                    <ValidationMessage For="() => asignatura.Nombre" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">
-                        <strong>Edad</strong>
+                        <strong>Aula</strong>
+                    </label>
+                    <InputText class="form-control"
+                               @bind-Value="asignatura.Aula" />
+                    <ValidationMessage For="() => asignatura.Aula" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        <strong>Créditos</strong>
                     </label>
                     <InputNumber class="form-control"
-                                 @bind-Value="estudiante.edad" />
-                    <ValidationMessage For="() => estudiante.edad" />
+                                 @bind-Value="asignatura.Creditos" />
+                    <ValidationMessage For="() => asignatura.Creditos" />
                 </div>
 
                 @if (!string.IsNullOrEmpty(Mensaje))
@@ -61,9 +70,8 @@
                 }
 
             </div>
-
             <div class="card-footer text-center mt-2">
-                <a href="/estudiantes" class="btn btn-secondary">
+                <a href="/asignaturas" class="btn btn-secondary">
                     <span class="bi bi-arrow-left"></span> Volver
                 </a>
 
@@ -79,37 +87,37 @@
 @code {
 
     [Parameter]
-    public int EstudianteId { get; set; }
+    public int AsignaturaId { get; set; }
 
-    public Estudiantes estudiante { get; set; } = new Estudiantes();
+    public Asignaturas asignatura { get; set; } = new Asignaturas();
 
     public string Mensaje { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
-        estudiante = await estudiantesService.Buscar(EstudianteId);
+        asignatura = await asignaturasService.Buscar(AsignaturaId);
 
-        if (estudiante == null)
+        if (asignatura == null)
         {
-            navigation.NavigateTo("/estudiantes");
+            navigation.NavigateTo("/asignaturas");
         }
     }
 
     private async Task Guardar()
     {
-        var editado = await estudiantesService.Modificar(estudiante);
+        var editado = await asignaturasService.Modificar(asignatura);
 
         if (!editado)
         {
-            Mensaje = "No se pudo modificar el estudiante.";
+            Mensaje = "No se pudo modificar la asignatura.";
             return;
         }
 
-        navigation.NavigateTo("/estudiantes");
+        navigation.NavigateTo("/asignaturas");
     }
 
     private void Cancelar()
     {
-        navigation.NavigateTo("/estudiantes");
+        navigation.NavigateTo("/asignaturas");
     }
 }
