@@ -2,6 +2,7 @@ using JEGRegistroEstudiante.Components;
 using JEGRegistroEstudiante.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using JEGRegistroEstudiante.Services;
 
 public partial class Program
 {
@@ -21,6 +22,14 @@ public partial class Program
         //agregando contexto al builderrr
 
         builder.Services.AddDbContextFactory<ContextoRegistroEstudiantes>(options => options.UseSqlServer(ConStr));
+
+        /*Aqui estoy inyectando el service xd
+            bien facilito
+        */
+
+
+        builder.Services.AddScoped<EstudiantesService>();
+
 
 
 

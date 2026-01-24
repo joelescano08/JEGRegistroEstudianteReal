@@ -1,0 +1,46 @@
+﻿<h3>EstudiantesIndex</h3>
+@page "/Estudiante/Index"
+
+@inject EstudiantesService estudiantesService
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Registro de Estudiantes</PageTitle>
+
+<div class="container">
+	<div class="card shadow-lg">
+		<div class="card-header space-between">
+			<h5 class="card-title">Registro Estudiantes</h5>
+			<a href="/Estudiante/Create" class="btn btn-primary"> <span class="bi bi mt-3"></span> Crear</a>
+		</div>
+	</div>
+
+	<div class="card-body">
+		@*labels*@
+		<div class="row">
+			
+		</div>
+
+		@*Inputs y Botones*@
+		<div class="row align-items-center">
+
+		</div>
+
+		<table class ="table table-hover">
+
+		</table>
+
+	</div>
+
+	<div class="card-footer space-between">
+		<label>Total de Estudiantes: @ListaEstudiantes.Count()</label>
+	</div>
+</div>
+
+@code {
+
+	public List<Estudiantes> ListaEstudiantes { get; set; } = new List<Estudiantes>(); 
+
+	public string Filtro { get; set; } = string.Empty;
+
+}
