@@ -30,6 +30,7 @@ public partial class Program
 
         builder.Services.AddScoped<EstudiantesService>();
         builder.Services.AddScoped<AsignaturasService>();
+        builder.Services.AddScoped<TiposPuntosService>();
 
 
 
