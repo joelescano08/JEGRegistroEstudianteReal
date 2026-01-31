@@ -1,45 +1,110 @@
 ﻿@page "/asignaturas/create"
-@inject AsignaturasService asignaturasService
-@inject NavigationManager nav
+@inject AsignaturasService asignaturaService
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
 
+@*HTML*@
+<PageTitle>Crear Asignatura</PageTitle>
 <EditForm Model="asignatura" OnValidSubmit="Guardar">
-    <DataAnnotationsValidator />
+	<DataAnnotationsValidator />
 
-    <div class="container">
-        <div class="card shadow-lg">
-            <div class="card-header text-center">
-                <h5>Crear Asignatura</h5>
-            </div>
+	<div class="container">
+		<div class=" card shadow-lg">
 
-            <div class="card-body">
-                <InputText class="form-control mb-2" @bind-Value="asignatura.Codigo" placeholder="Código" />
-                <InputText class="form-control mb-2" @bind-Value="asignatura.Nombre" placeholder="Nombre" />
-                <InputText class="form-control mb-2" @bind-Value="asignatura.Aula" placeholder="Aula" />
-                <InputNumber class="form-control mb-2" @bind-Value="asignatura.Creditos" placeholder="Créditos" />
+			<div class="card-header text-center">
+				<h5 class="card-title">Crear Estudiante</h5>
+			</div>
+			<div class="caard-body">
+				@*AsignaturaId*@
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>AsignaturaId</strong>
+					</label>
+					<InputNumber class="form-control" @bind-Value="asignatura.AsignaturaId" readonly></InputNumber>
+				</div>
 
-                @if (!string.IsNullOrEmpty(Mensaje))
-                {
-                    <div class="alert alert-danger">@Mensaje</div>
-                }
-            </div>
+				@*Nombre de asignatura*@
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Nombre de asignatura</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="asignatura.Nombre" />
+					<ValidationMessage For="() => asignatura.Nombre" />
+				</div>
 
-            <div class="card-footer text-center">
-                <button class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
-    </div>
+				@*Codigo*@
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Codigo de Asignatura</strong>
+					</label>
+					<InputNumber class="form-control"
+							   @bind-Value="asignatura.Codigo" />
+					<ValidationMessage For="() => asignatura.Codigo" />
+
+				</div>
+
+				@*Creditos*@
+				<!--Creditos-->
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Creditos de asignatura</strong>
+					</label>
+					<InputNumber class="form-control"
+								 @bind-Value="asignatura.Creditos" />
+					<ValidationMessage For="() => asignatura.Creditos" />
+				</div>
+
+				@if (!string.IsNullOrEmpty(MensajeError))
+				{
+					<div class="alert alert-danger">
+						@MensajeError
+					</div>
+				}
+
+			</div>
+
+			@*footer*@
+			<div class="card-footer text-center mt-2">
+				<a href="/estudiantes" class="btn btn alert-secondary">
+					<span class="bi bi-arrow-left"></span> Volver
+				</a>
+
+				<button type="submit" class="btn btn-primary bi bi-floppy">Guardar</button>
+			</div>
+		</div>
+	</div>
 </EditForm>
 
-@code {
-    public Asignaturas asignatura { get; set; } = new();
-    public string Mensaje { get; set; } = "";
 
-    private async Task Guardar()
-    {
-        var ok = await asignaturasService.Guardar(asignatura);
-        if (ok)
-            nav.NavigateTo("/asignaturas");
-        else
-            Mensaje = "No se permite duplicar asignaturas con el mismo nombre";
-    }
+
+
+@code {
+
+	public Asignaturas asignatura { get; set; } = new Asignaturas();
+
+	public string MensajeError { get; set; } = string.Empty;
+
+
+	protected override async Task OnInitializedAsync()
+	{
+
+	}
+	private async Task Guardar()
+	{
+		var creado = await asignaturaService.Guardar(asignatura);
+
+		if (creado)
+		{
+			navigationManager.NavigateTo("/asignatura");
+		}
+		else
+		{
+			MensajeError = "No se pudo crear la asignatura correctamente";
+			return;
+		}
+	}
+
+
 }
+

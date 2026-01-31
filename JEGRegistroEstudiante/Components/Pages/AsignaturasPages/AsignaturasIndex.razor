@@ -53,6 +53,8 @@
 
 @code {
     public List<Asignaturas> ListaAsignaturas { get; set; } = new();
+    public string Filtro { get; set; } = string.Empty;
+    public string ValorFiltro { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -63,5 +65,25 @@
     {
         await asignaturasService.Eliminar(id);
         ListaAsignaturas = await asignaturasService.Listar(a => a.AsignaturaId > 0);
+    }
+    private async Task Buscar()
+    {
+        if (ValorFiltro.Trim() != "")
+        {
+            if (Filtro == "Nombre")
+            {
+                ListaAsignaturas = await asignaturasService.Listar(e => e.Nombre.ToLower().Contains(ValorFiltro.ToLower()));
+
+            }
+            else if (Filtro == "Codigo")
+            {
+                ListaAsignaturas = await asignaturasService.Listar(e => e.Codigo.ToLower().Contains(ValorFiltro.ToLower()));
+            }
+        }
+        else
+        {
+            ListaAsignaturas = await asignaturasService.Listar(e => e.AsignaturaId > 0);
+
+        }
     }
 }

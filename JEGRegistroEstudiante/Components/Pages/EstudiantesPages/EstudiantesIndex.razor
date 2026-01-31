@@ -14,16 +14,34 @@
 	</div>
 
 	<div class="card-body">
-		<div class="row">
-			
-		</div>
-
-		<div class="row align-items-center">
-
-		</div>
-
-		<table class ="table table-hover">
-
+		<table class="table table-hover">
+			<thead class="table-white">
+				<tr>
+					<th>EstudianteID</th>
+					<th>Nombres</th>
+					<th>Email</th>
+					<th>Edad</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var e in ListaEstudiantes)
+				{
+					<tr>
+						<td>@e.EstudianteId</td>
+						<td>@e.Nombres</td>
+						<td>@e.Email</td>
+						<td>@e.edad</td>
+						<td>
+							<a class="btn btn-warning btn-sm"
+							   href="/estudiantes/edit/@e.EstudianteId">Editar</a>
+							<button class="btn btn-danger btn-sm"
+									@onclick="() => Eliminar(e.EstudianteId)">
+								Eliminar
+							</button>
+						</td>
+					</tr>
+				}
+			</tbody>
 		</table>
 
 	</div>
@@ -45,6 +63,12 @@
 	{
 		ListaEstudiantes = await estudiantesService.Listar(estudiante => estudiante.EstudianteId > 0);
 
+	}
+
+	private async Task Eliminar(int id)
+	{
+		await estudiantesService.Eliminar(id);
+		ListaEstudiantes = await estudiantesService.Listar(e => e.EstudianteId > 0);
 	}
 
 	private async Task Buscar()

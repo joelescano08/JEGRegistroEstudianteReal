@@ -1,0 +1,130 @@
+﻿@page "/tipospuntos/create"
+@inject TiposPuntosService tiposPuntosService
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Crear Tipo de Punto</PageTitle>
+
+<EditForm Model="tipoPunto" OnValidSubmit="Guardar">
+	<DataAnnotationsValidator />
+
+	<div class="container">
+		<div class="card shadow-lg">
+
+			<div class="card-header text-center">
+				<h5 class="card-title">Crear Tipo de Punto</h5>
+			</div>
+
+			<div class="card-body">
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>TipoId</strong>
+					</label>
+					<InputNumber class="form-control"
+								 @bind-Value="tipoPunto.TipoId"
+								 readonly />
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Nombre</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="tipoPunto.Nombre" />
+					<ValidationMessage For="() => tipoPunto.Nombre" />
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Descripcion</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="tipoPunto.Descripcion" />
+					<ValidationMessage For="() => tipoPunto.Descripcion" />
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Valor Puntos</strong>
+					</label>
+					<InputNumber class="form-control"
+								 @bind-Value="tipoPunto.ValorPuntos" />
+					<ValidationMessage For="() => tipoPunto.ValorPuntos" />
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Color</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="tipoPunto.Color" />
+					<ValidationMessage For="() => tipoPunto.Color" />
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Icono</strong>
+					</label>
+					<InputText class="form-control"
+							   @bind-Value="tipoPunto.Icono" />
+					<ValidationMessage For="() => tipoPunto.Icono" />
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">
+						<strong>Activo</strong>
+					</label>
+					<InputCheckbox class="form-check-input"
+								   @bind-Value="tipoPunto.Activo" />
+					<ValidationMessage For="() => tipoPunto.Activo" />
+				</div>
+
+				@if (!string.IsNullOrEmpty(MensajeError))
+				{
+					<div class="alert alert-danger">
+						@MensajeError
+					</div>
+				}
+
+			</div>
+
+			<div class="card-footer text-center mt-2">
+				<a href="/tipospuntos" class="btn btn alert-secondary">
+					<span class="bi bi-arrow-left"></span> Volver
+				</a>
+
+				<button type="submit" class="btn btn-primary bi bi-floppy">
+					Guardar
+				</button>
+			</div>
+
+		</div>
+	</div>
+</EditForm>
+
+@code {
+
+	public TiposPuntos tipoPunto { get; set; } = new TiposPuntos();
+
+	public string MensajeError { get; set; } = string.Empty;
+
+	protected override async Task OnInitializedAsync()
+	{
+	}
+
+	private async Task Guardar()
+	{
+		var creado = await tiposPuntosService.Guardar(tipoPunto);
+
+		if (creado)
+		{
+			navigationManager.NavigateTo("/tipospuntos");
+		}
+		else
+		{
+			MensajeError = "No se pudo crear el tipo de punto correctamente";
+			return;
+		}
+	}
+}

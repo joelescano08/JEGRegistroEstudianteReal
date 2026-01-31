@@ -1,9 +1,9 @@
-﻿@page "/asignaturas/edit/{AsignaturaId:int}"
-@inject AsignaturasService asignaturasService
+﻿@page "/asignaturas/edit/{EstudianteId:int}"
+@inject AsignaturasService asignaturaService
 @inject NavigationManager navigation
 @rendermode InteractiveServer
 
-<PageTitle>Editar Asignatura</PageTitle>
+<PageTitle>Editar asignatura</PageTitle>
 
 <EditForm Model="asignatura" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
@@ -28,15 +28,6 @@
 
                 <div class="mb-3">
                     <label class="form-label">
-                        <strong>Código</strong>
-                    </label>
-                    <InputText class="form-control"
-                               @bind-Value="asignatura.Codigo" />
-                    <ValidationMessage For="() => asignatura.Codigo" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">
                         <strong>Nombre</strong>
                     </label>
                     <InputText class="form-control"
@@ -46,19 +37,28 @@
 
                 <div class="mb-3">
                     <label class="form-label">
+                        <strong>Codigo</strong>
+                    </label>
+                    <InputNumber class="form-control"
+                               @bind-Value="asignatura.Codigo" />
+                    <ValidationMessage For="() => asignatura.Codigo" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
                         <strong>Aula</strong>
                     </label>
                     <InputText class="form-control"
-                               @bind-Value="asignatura.Aula" />
+                                 @bind-Value="asignatura.Aula" />
                     <ValidationMessage For="() => asignatura.Aula" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">
-                        <strong>Créditos</strong>
+                        <strong>Creditos</strong>
                     </label>
                     <InputNumber class="form-control"
-                                 @bind-Value="asignatura.Creditos" />
+                               @bind-Value="asignatura.Creditos" />
                     <ValidationMessage For="() => asignatura.Creditos" />
                 </div>
 
@@ -70,8 +70,9 @@
                 }
 
             </div>
+
             <div class="card-footer text-center mt-2">
-                <a href="/asignaturas" class="btn btn-secondary">
+                <a href="/asignatura" class="btn btn-secondary">
                     <span class="bi bi-arrow-left"></span> Volver
                 </a>
 
@@ -95,29 +96,29 @@
 
     protected override async Task OnInitializedAsync()
     {
-        asignatura = await asignaturasService.Buscar(AsignaturaId);
+        asignatura = await asignaturaService.Buscar(AsignaturaId);
 
         if (asignatura == null)
         {
-            navigation.NavigateTo("/asignaturas");
+            navigation.NavigateTo("/asignatura");
         }
     }
 
     private async Task Guardar()
     {
-        var editado = await asignaturasService.Modificar(asignatura);
+        var editado = await asignaturaService.Modificar(asignatura);
 
         if (!editado)
         {
-            Mensaje = "No se pudo modificar la asignatura.";
+            Mensaje = "No se pudo modificar el estudiante.";
             return;
         }
 
-        navigation.NavigateTo("/asignaturas");
+        navigation.NavigateTo("/estudiantes");
     }
 
     private void Cancelar()
     {
-        navigation.NavigateTo("/asignaturas");
+        navigation.NavigateTo("/estudiantes");
     }
 }
