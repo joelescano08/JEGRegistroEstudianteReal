@@ -1,5 +1,100 @@
-﻿<h3>TiposPuntosIndex</h3>
+﻿@page "/tipospuntos"
+
+@inject TiposPuntosService tiposPuntosService
+@inject NavigationManager navigationManager
+
+<PageTitle>Tipos de Puntos</PageTitle>
+
+<div class="container">
+	<div class="card shadow-lg">
+		<div class="card-header space-between">
+			<h5 class="card-title">Tipos de Puntos</h5>
+			<a href="/tipospuntos/create" class="btn btn-primary">
+				<span class="bi bi mt-3"></span> Crear
+			</a>
+		</div>
+	</div>
+
+	<div class="card-body">
+		<table class="table table-hover">
+			<thead class="table-white">
+				<tr>
+					<th>TipoId</th>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th>Valor Puntos</th>
+					<th>Color</th>
+					<th>Icono</th>
+					<th>Activo</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var tp in ListaTiposPuntos)
+				{
+					<tr>
+						<td>@tp.TipoId</td>
+						<td>@tp.Nombre</td>
+						<td>@tp.Descripcion</td>
+						<td>@tp.ValorPuntos</td>
+						<td>@tp.Color</td>
+						<td>@tp.Icono</td>
+						<td>@tp.Activo</td>
+						<td>
+							<a class="btn btn-warning btn-sm"
+							   href="/tipospuntos/edit/@tp.TipoId">
+								Editar
+							</a>
+							<button class="btn btn-danger btn-sm"
+									@onclick="() => Eliminar(tp.TipoId)">
+								Eliminar
+							</button>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="card-footer space-between">
+		<label>Total de Tipos de Puntos: @ListaTiposPuntos.Count()</label>
+	</div>
+</div>
 
 @code {
 
+	public List<TiposPuntos> ListaTiposPuntos { get; set; } = new List<TiposPuntos>();
+
+	public string Filtro { get; set; } = string.Empty;
+	public string ValorFiltro { get; set; } = string.Empty;
+
+	protected override async Task OnInitializedAsync()
+	{
+		ListaTiposPuntos = await tiposPuntosService
+			.Listar(tp => tp.TipoId > 0);
+	}
+
+	private async Task Eliminar(int id)
+	{
+		await tiposPuntosService.Eliminar(id);
+		ListaTiposPuntos = await tiposPuntosService
+			.Listar(tp => tp.TipoId > 0);
+	}
+
+	private async Task Buscar()
+	{
+		if (ValorFiltro.Trim() != "")
+		{
+			if (Filtro == "Nombre")
+			{
+				ListaTiposPuntos = await tiposPuntosService
+					.Listar(tp => tp.Nombre.ToLower()
+					.Contains(ValorFiltro.ToLower()));
+			}
+		}
+		else
+		{
+			ListaTiposPuntos = await tiposPuntosService
+				.Listar(tp => tp.TipoId > 0);
+		}
+	}
 }
